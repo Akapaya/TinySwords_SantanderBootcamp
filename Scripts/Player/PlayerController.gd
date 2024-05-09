@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+#Inputs
+var inputVector : Vector2
+
 #Movement Vars
 @export var movementSpeed: float = 3
 @export var lerpWeight: float = 0.4
@@ -14,11 +17,32 @@ var attackCooldown : float = 0.0
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
 func _process(delta: float) -> void:
+	ReadInputs()
+	
+	if Input.is_action_just_pressed("Attack"):
+		Attack()
+	
 	if isAttacking:
 		attackCooldown -= delta
 		if attackCooldown <= 0:
 			isAttacking = false
 
+func _physics_process(delta :float) -> void:
+	var targetVelocity = inputVector * movementSpeed * movementSpeedMultiply * delta
+	
+	if isAttacking:
+		targetVelocity *= 0.25
+	
+	velocity = lerp(velocity, targetVelocity, lerpWeight)
+	move_and_slide()	
+	CheckRunningState()
+	FlipCharacter()
+
+#InputMethods
+func ReadInputs() -> void:
+	inputVector = Input.get_vector("MoveLeft","MoveRight","MoveUp","MoveDown",0.15)
+
+#AttackMethods
 func Attack() -> void :
 	if isAttacking == true:
 		return
@@ -27,17 +51,8 @@ func Attack() -> void :
 	attackCooldown = 0.4
 	animationPlayer.PlayAnimationByString("attackDown1")
 
-func _physics_process(delta :float) -> void:
-	var inputVector = Input.get_vector("MoveLeft","MoveRight","MoveUp","MoveDown",0.15)
-	
-	var targetVelocity = inputVector * movementSpeed * movementSpeedMultiply * delta
-	
-	if isAttacking:
-		targetVelocity *= 0.25
-	
-	velocity = lerp(velocity, targetVelocity, lerpWeight)
-	move_and_slide()
-	
+#CheckStateMethods
+func CheckRunningState() -> void:
 	isRunning = not inputVector.is_zero_approx()
 	
 	if isAttacking == false:
@@ -45,12 +60,10 @@ func _physics_process(delta :float) -> void:
 			animationPlayer.PlayAnimationByString("run")
 		else :
 			animationPlayer.PlayAnimationByString("idle")
-	
 
+#VisualMethod
+func FlipCharacter() -> void:
 	if inputVector.x < 0:
 		spritePlayer.flip_h = true
 	elif inputVector.x > 0:
 		spritePlayer.flip_h = false
-	
-	if Input.is_action_just_pressed("Attack"):
-		Attack()
