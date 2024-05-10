@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1xil3bc8u7iv"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_e7jgp"]
+[ext_resource type="Script" path="res://Scripts/Behaviors/FollowPlayer.gd" id="1_ngqfm"]
+[ext_resource type="Texture2D" uid="uid://dtehkdl6n6kbn" path="res://Addons/Tiny Swords/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="2_d5mt3"]
+[ext_resource type="Script" path="res://Scripts/Behaviors/HealthManager.gd" id="2_imgcv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrg54"]
+radius = 24.0208
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln7e5"]
+atlas = ExtResource("2_d5mt3")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3oko"]
+atlas = ExtResource("2_d5mt3")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvuc8"]
+atlas = ExtResource("2_d5mt3")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7bff"]
+atlas = ExtResource("2_d5mt3")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0rrr"]
+atlas = ExtResource("2_d5mt3")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wx1su"]
+atlas = ExtResource("2_d5mt3")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwq2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln7e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3oko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvuc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7bff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0rrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wx1su")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="Enemy_1" type="CharacterBody2D" groups=["Enemies"]]
+position = Vector2(967, 537)
+script = ExtResource("1_e7jgp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vrg54")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bwq2u")
+animation = &"idle"
+autoplay = "idle"
+frame = 3
+frame_progress = 0.699968
+
+[node name="HealthManager" type="Node2D" parent="."]
+script = ExtResource("2_imgcv")
+
+[node name="FollowPlayer" type="Node2D" parent="."]
+script = ExtResource("1_ngqfm")
+movementSpeed = 60.0

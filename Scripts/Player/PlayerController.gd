@@ -8,11 +8,15 @@ var inputVector : Vector2
 @export var lerpWeight: float = 0.4
 @export var movementSpeedMultiply: float = 5000
 
+#Stats Vars
+@export var Strenght: int = 2
+
 #States
 var isRunning : bool = false
 var isAttacking : bool = false
 var attackCooldown : float = 0.0
 
+@onready var swordArea: Area2D = %SwordArea
 @onready var spritePlayer: Sprite2D = %Sprite2D
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
@@ -37,6 +41,8 @@ func _physics_process(delta :float) -> void:
 	move_and_slide()	
 	CheckRunningState()
 	FlipCharacter()
+	
+	GameManager.playerPosition = position
 
 #InputMethods
 func ReadInputs() -> void:
@@ -50,6 +56,24 @@ func Attack() -> void :
 	isAttacking = true
 	attackCooldown = 0.4
 	animationPlayer.PlayAnimationByString("attackDown1")
+
+func CheckEnemiesAttacked() -> void:
+	var bodies = swordArea.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("Enemies"):
+			var enemy : Enemy = body
+			var directionToEnemy = (enemy.position - position).normalized()
+			var attackDirection : Vector2
+			
+			if spritePlayer.flip_h:
+				attackDirection = Vector2.LEFT
+			else:
+				attackDirection = Vector2.RIGHT
+			
+			var dotProduct = directionToEnemy.dot(attackDirection)
+			
+			if dotProduct >= 0.3:
+				enemy.TakeDamage(Strenght)
 
 #CheckStateMethods
 func CheckRunningState() -> void:

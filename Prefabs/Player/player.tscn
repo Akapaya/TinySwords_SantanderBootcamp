@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://44j8o36jh800"]
+[gd_scene load_steps=16 format=3 uid="uid://44j8o36jh800"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_20f80"]
 [ext_resource type="Texture2D" uid="uid://dc1fflbhlbpw6" path="res://Addons/Tiny Swords/Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="1_c21df"]
@@ -23,10 +23,9 @@ tracks/0/keys = {
 "values": [Vector2i(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_rc12n"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_h7osi"]
+resource_name = "attackDown1"
 length = 0.6
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -37,11 +36,25 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)]
+"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"CheckEnemiesAttacked"
+}]
 }
 
-[sub_resource type="Animation" id="Animation_egyr3"]
-resource_name = "run"
+[sub_resource type="Animation" id="Animation_xdt73"]
+resource_name = "attackDown2"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
@@ -54,7 +67,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
 }
 
 [sub_resource type="Animation" id="Animation_wgkp6"]
@@ -125,24 +138,8 @@ tracks/0/keys = {
 "values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 7), Vector2i(5, 7)]
 }
 
-[sub_resource type="Animation" id="Animation_h7osi"]
-resource_name = "attackDown1"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_xdt73"]
-resource_name = "attackDown2"
+[sub_resource type="Animation" id="Animation_rc12n"]
+resource_name = "idle"
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
@@ -155,7 +152,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5)]
+"values": [Vector2i(0, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_egyr3"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwhs2"]
@@ -170,6 +184,9 @@ _data = {
 "idle": SubResource("Animation_rc12n"),
 "run": SubResource("Animation_egyr3")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftjs7"]
+radius = 122.53
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(218, 92)
@@ -193,3 +210,10 @@ libraries = {
 }
 autoplay = "idle"
 script = ExtResource("2_eml0e")
+
+[node name="SwordArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
+position = Vector2(0, -30.465)
+shape = SubResource("CircleShape2D_ftjs7")

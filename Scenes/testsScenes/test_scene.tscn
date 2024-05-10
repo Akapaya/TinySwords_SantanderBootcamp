@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://g1kg1tl3j5m3"]
+[gd_scene load_steps=3 format=3 uid="uid://g1kg1tl3j5m3"]
 
 [ext_resource type="PackedScene" uid="uid://44j8o36jh800" path="res://Prefabs/Player/player.tscn" id="1_ul0go"]
+[ext_resource type="PackedScene" uid="uid://c1xil3bc8u7iv" path="res://Prefabs/Enemies/enemy_1.tscn" id="2_rpdkr"]
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ul0go")]
+unique_name_in_owner = true
+
+[node name="Enemy_1" parent="." instance=ExtResource("2_rpdkr")]
+position = Vector2(901, 511)

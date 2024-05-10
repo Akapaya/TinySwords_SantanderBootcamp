@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnit0jg24lqwj"]
+
+[ext_resource type="PackedScene" uid="uid://c1xil3bc8u7iv" path="res://Prefabs/Enemies/enemy_1.tscn" id="1_h4w1d"]
+
+[node name="Enemies_1Test" type="Node2D"]
+
+[node name="Enemy_1" parent="." instance=ExtResource("1_h4w1d")]
+position = Vector2(1011, 370)
