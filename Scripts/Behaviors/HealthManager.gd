@@ -1,7 +1,5 @@
 class_name HealthManager
-extends Node
-
-
+extends Node2D
 
 func TakeDamage(damage: int, health: int) -> int:
 	health -= damage

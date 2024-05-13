@@ -6,3 +6,4 @@
 
 [node name="Enemy_1" parent="." instance=ExtResource("1_h4w1d")]
 position = Vector2(1011, 370)
+deathFab = null

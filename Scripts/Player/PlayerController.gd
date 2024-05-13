@@ -10,13 +10,19 @@ var inputVector : Vector2
 
 #Stats Vars
 @export var Strenght: int = 2
+@export var health: int = 50
+
+#Fabs Vars
+@export var deathFab: PackedScene
 
 #States
 var isRunning : bool = false
 var isAttacking : bool = false
 var attackCooldown : float = 0.0
+var hitBoxCooldown : float = 0.0
 
 @onready var swordArea: Area2D = %SwordArea
+@onready var ContactZone : Area2D = %ContactZone
 @onready var spritePlayer: Sprite2D = %Sprite2D
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
 
@@ -43,6 +49,8 @@ func _physics_process(delta :float) -> void:
 	
 	if isAttacking == false:
 		FlipCharacter()
+	
+	CheckContactEnemies(delta)
 	
 	GameManager.playerPosition = position
 
@@ -93,3 +101,43 @@ func FlipCharacter() -> void:
 		spritePlayer.flip_h = true
 	elif inputVector.x > 0:
 		spritePlayer.flip_h = false
+
+#TakeDamage Methods
+func CheckContactEnemies(delta : float) -> void:
+	hitBoxCooldown -= delta
+	if hitBoxCooldown > 0:
+		return
+	
+	hitBoxCooldown = 0.5
+	
+	var bodies = ContactZone.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("Enemies"):
+			var enemy : Enemy = body
+			var damage = 1
+			TakeDamage(damage)
+
+func TakeDamage(damage: int) -> void:
+	if(health <= 0):
+		return
+	
+	health -= damage
+	DamageEffect()
+	
+	if health <= 0:
+		DeathAnimation()
+
+func DamageEffect() -> void:
+	modulate = Color.RED
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_QUINT)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.3)
+
+func DeathAnimation() -> void:
+	if deathFab:
+		var deathObject = deathFab.instantiate()
+		deathObject.position = position
+		get_parent().add_child(deathObject)
+		
+	queue_free()

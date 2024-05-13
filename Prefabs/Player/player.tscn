@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://44j8o36jh800"]
+[gd_scene load_steps=18 format=3 uid="uid://44j8o36jh800"]
 
 [ext_resource type="Script" path="res://Scripts/Player/PlayerController.gd" id="1_20f80"]
 [ext_resource type="Texture2D" uid="uid://dc1fflbhlbpw6" path="res://Addons/Tiny Swords/Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="1_c21df"]
 [ext_resource type="Script" path="res://Scripts/Player/AnimationPlayer.gd" id="2_eml0e"]
+[ext_resource type="PackedScene" uid="uid://cwcjm0lxakwhv" path="res://Animations/SkullAnimation.tscn" id="2_yaatq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0why"]
 radius = 18.0
@@ -188,9 +189,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ftjs7"]
 radius = 122.53
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3hd6"]
+radius = 91.04
+
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(218, 92)
 script = ExtResource("1_20f80")
+deathFab = ExtResource("2_yaatq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -217,3 +221,11 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
 position = Vector2(0, -30.465)
 shape = SubResource("CircleShape2D_ftjs7")
+
+[node name="ContactZone" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactZone"]
+position = Vector2(0, -30.59)
+shape = SubResource("CircleShape2D_f3hd6")
+debug_color = Color(0.981496, 0, 0.370547, 0.42)
