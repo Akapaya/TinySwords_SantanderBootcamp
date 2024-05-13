@@ -60,7 +60,6 @@ animations = [{
 }]
 
 [node name="Enemy_1" type="CharacterBody2D" groups=["Enemies"]]
-position = Vector2(967, 537)
 script = ExtResource("1_e7jgp")
 deathFab = ExtResource("2_7jju5")
 
