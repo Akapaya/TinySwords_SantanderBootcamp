@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1xil3bc8u7iv"]
+[gd_scene load_steps=14 format=3 uid="uid://c1xil3bc8u7iv"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_e7jgp"]
 [ext_resource type="Script" path="res://Scripts/Behaviors/FollowPlayer.gd" id="1_ngqfm"]
+[ext_resource type="PackedScene" uid="uid://cwcjm0lxakwhv" path="res://Animations/SkullAnimation.tscn" id="2_7jju5"]
 [ext_resource type="Texture2D" uid="uid://dtehkdl6n6kbn" path="res://Addons/Tiny Swords/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="2_d5mt3"]
 [ext_resource type="Script" path="res://Scripts/Behaviors/HealthManager.gd" id="2_imgcv"]
 
@@ -61,6 +62,7 @@ animations = [{
 [node name="Enemy_1" type="CharacterBody2D" groups=["Enemies"]]
 position = Vector2(967, 537)
 script = ExtResource("1_e7jgp")
+deathFab = ExtResource("2_7jju5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vrg54")

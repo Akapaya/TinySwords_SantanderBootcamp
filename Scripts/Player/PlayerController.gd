@@ -40,7 +40,9 @@ func _physics_process(delta :float) -> void:
 	velocity = lerp(velocity, targetVelocity, lerpWeight)
 	move_and_slide()	
 	CheckRunningState()
-	FlipCharacter()
+	
+	if isAttacking == false:
+		FlipCharacter()
 	
 	GameManager.playerPosition = position
 
