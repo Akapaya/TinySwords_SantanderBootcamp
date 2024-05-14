@@ -3,10 +3,15 @@ extends CharacterBody2D
 
 @export var health: int = 10
 @export var deathFab: PackedScene
+
 var damageDigitFab: PackedScene
 var damageDigitMarker: Marker2D
 
 var healthManager : HealthManager
+
+@export var dropChance: float = 0.1
+@export var dropItemsFab: Array[PackedScene]
+@export var dropChances: Array[float]
 
 func _ready():
 	healthManager = get_node("HealthManager")
@@ -43,4 +48,32 @@ func DeathAnimation() -> void:
 		get_parent().add_child(deathObject)
 		GameManager.Kills += 1
 		GameManager.Gold += 10
+	
+	DropItem()
+	
 	queue_free()
+
+func DropItem() -> void:
+	var template = GetRandomDropItem().instantiate()
+	template.position = position
+	get_parent().get_parent().add_child(template)
+
+func GetRandomDropItem() -> PackedScene:
+	if  dropItemsFab.size() == 1:
+		return dropItemsFab[0]
+	
+	if randf() <= dropChance:
+		var maxChance : float = 0.0
+		for chance in dropChances:
+			maxChance += chance
+		var randomValue = randf() * maxChance
+		
+		var needle: float = 0.0
+		for i in dropItemsFab.size():
+			var dropItem = dropItemsFab[i]
+			var dropItemChance = dropChances[i] if i < dropChances.size() else 1
+			if randomValue <= dropItemChance + needle:
+				return dropItem
+			needle += dropItemChance
+	
+	return dropItemsFab[0]

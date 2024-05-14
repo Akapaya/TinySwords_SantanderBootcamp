@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b6j2d7axonmlk" path="res://Prefabs/Magics/ritual.tscn" id="3_p27nf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o0why"]
-radius = 18.0
-height = 68.0
+radius = 13.0
+height = 44.0
 
 [sub_resource type="Animation" id="Animation_brm7e"]
 length = 0.001
@@ -201,18 +201,19 @@ bg_color = Color(0.910611, 0.419394, 0.494127, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_20f80")
+movementSpeed = 3.5
 deathFab = ExtResource("2_yaatq")
 ritualFab = ExtResource("3_p27nf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -31)
+position = Vector2(0, -42)
 texture = ExtResource("1_c21df")
 hframes = 6
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -31)
+position = Vector2(0, -26)
 shape = SubResource("CapsuleShape2D_o0why")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -225,6 +226,7 @@ script = ExtResource("2_eml0e")
 
 [node name="SwordArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
 position = Vector2(0, -30.465)
@@ -232,6 +234,7 @@ shape = SubResource("CircleShape2D_ftjs7")
 
 [node name="ContactZone" type="Area2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactZone"]
 position = Vector2(0, -30.59)
@@ -241,9 +244,9 @@ debug_color = Color(0.981496, 0, 0.370547, 0.42)
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 offset_left = -67.0
-offset_top = 16.0
+offset_top = 5.0
 offset_right = 71.0
-offset_bottom = 27.0
+offset_bottom = 16.0
 theme_override_styles/background = SubResource("StyleBoxFlat_46jlh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_amlch")
 value = 100.0

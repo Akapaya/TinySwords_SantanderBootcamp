@@ -14,12 +14,19 @@ func _process(delta):
 	var interval = 60.0 / mobsPerMinute
 	cooldown = interval
 	
+	var point = GetPoint()
+	var worldState = get_world_2d().direct_space_state
+	var parameters = PhysicsPointQueryParameters2D.new()
+	parameters.position = point
+	var result: Array = worldState.intersect_point(parameters, 1)
+	if not result.is_empty():
+		return
+	
 	var index = randi_range(0, creatures.size() -1)
 	var creature_scene = creatures[index]
-	var point = GetPoint()
 	var creature = creature_scene.instantiate()
 	creature.global_position = point
-	get_parent().add_child(creature)
+	get_parent().get_parent().add_child(creature)
 
 func GetPoint() -> Vector2:
 	pathFollow2D.progress_ratio = randf()

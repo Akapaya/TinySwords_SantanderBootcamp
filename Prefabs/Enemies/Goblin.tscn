@@ -1,13 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://muqqalvpyn1y"]
+[gd_scene load_steps=16 format=3 uid="uid://muqqalvpyn1y"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_refjn"]
 [ext_resource type="PackedScene" uid="uid://cwcjm0lxakwhv" path="res://Animations/SkullAnimation.tscn" id="2_mia3r"]
+[ext_resource type="PackedScene" uid="uid://0l0j53qj18s" path="res://Animations/MeatlAnimation.tscn" id="3_7ibnd"]
 [ext_resource type="Texture2D" uid="uid://62ko3b1gaw6n" path="res://Addons/Tiny Swords/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="3_12mg2"]
+[ext_resource type="PackedScene" uid="uid://db5yxfvmxqso4" path="res://Animations/GoldMeatlAnimation.tscn" id="4_ht4jy"]
 [ext_resource type="Script" path="res://Scripts/Behaviors/HealthManager.gd" id="4_jvelt"]
 [ext_resource type="Script" path="res://Scripts/Behaviors/FollowPlayer.gd" id="5_7eff8"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vrg54"]
-radius = 30.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqvpg"]
 atlas = ExtResource("3_12mg2")
@@ -59,27 +58,41 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrg54"]
+radius = 14.2694
+
 [node name="Goblin" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
+y_sort_enabled = true
 scale = Vector2(1.33888, 1.33888)
 script = ExtResource("1_refjn")
 health = 20
 deathFab = ExtResource("2_mia3r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_vrg54")
+dropChance = 0.5
+dropItemsFab = Array[PackedScene]([ExtResource("3_7ibnd"), ExtResource("4_ht4jy")])
+dropChances = Array[float]([0.8, 0.2])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.397699, -30.2249)
 sprite_frames = SubResource("SpriteFrames_bwq2u")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.411976
 
 [node name="HealthManager" type="Node2D" parent="."]
+position = Vector2(0.397699, -30.2249)
 script = ExtResource("4_jvelt")
 
 [node name="FollowPlayer" type="Node2D" parent="."]
+position = Vector2(0.397699, -30.2249)
 script = ExtResource("5_7eff8")
 movementSpeed = 50.0
 
 [node name="DamageDigitMarker" type="Marker2D" parent="."]
-position = Vector2(0, -53.0294)
+position = Vector2(0.397699, -83.2543)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(0.746893, -5.97514)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_vrg54")

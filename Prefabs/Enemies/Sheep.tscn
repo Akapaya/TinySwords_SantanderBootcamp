@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8mih244ht8lh"]
+[gd_scene load_steps=15 format=3 uid="uid://b8mih244ht8lh"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/Enemy.gd" id="1_b0lk2"]
 [ext_resource type="PackedScene" uid="uid://cwcjm0lxakwhv" path="res://Animations/SkullAnimation.tscn" id="2_o63ph"]
+[ext_resource type="PackedScene" uid="uid://0l0j53qj18s" path="res://Animations/MeatlAnimation.tscn" id="3_13f1p"]
 [ext_resource type="Texture2D" uid="uid://m7kqam78jsj4" path="res://Addons/Tiny Swords/Resources/Sheep/HappySheep_Bouncing.png" id="3_pdwhm"]
 [ext_resource type="Script" path="res://Scripts/Behaviors/HealthManager.gd" id="4_n1ihl"]
 [ext_resource type="Script" path="res://Scripts/Behaviors/FollowPlayer.gd" id="5_3s5ol"]
@@ -60,25 +61,35 @@ animations = [{
 }]
 
 [node name="Sheep" type="CharacterBody2D" groups=["Enemies"]]
+z_index = 1
 script = ExtResource("1_b0lk2")
 health = 2
 deathFab = ExtResource("2_o63ph")
+dropChance = 0.5
+dropItemsFab = Array[PackedScene]([ExtResource("3_13f1p")])
+dropChances = Array[float]([1.0])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(1, -17)
 shape = SubResource("CircleShape2D_vrg54")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -17)
 sprite_frames = SubResource("SpriteFrames_bwq2u")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.586823
 
 [node name="HealthManager" type="Node2D" parent="."]
+position = Vector2(1, -17)
 script = ExtResource("4_n1ihl")
 
 [node name="FollowPlayer" type="Node2D" parent="."]
+position = Vector2(1, -17)
 script = ExtResource("5_3s5ol")
 movementSpeed = 80.0
 
 [node name="DamageDigitMarker" type="Marker2D" parent="."]
-position = Vector2(0, -34)
+position = Vector2(1, -51)
