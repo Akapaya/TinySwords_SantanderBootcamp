@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 #Inputs
@@ -10,6 +11,7 @@ var inputVector : Vector2
 
 #Stats Vars
 @export var Strenght: int = 2
+@export var maxHealth: int = 50
 @export var health: int = 50
 
 #Fabs Vars
@@ -141,3 +143,8 @@ func DeathAnimation() -> void:
 		get_parent().add_child(deathObject)
 		
 	queue_free()
+
+func HealthRegen(amount : float) ->void:
+	health +=amount
+	if(health >= maxHealth):
+		health = maxHealth

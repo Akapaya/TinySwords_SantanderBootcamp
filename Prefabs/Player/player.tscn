@@ -190,9 +190,9 @@ _data = {
 radius = 122.53
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f3hd6"]
-radius = 91.04
+radius = 64.0454
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_20f80")
 deathFab = ExtResource("2_yaatq")
 
