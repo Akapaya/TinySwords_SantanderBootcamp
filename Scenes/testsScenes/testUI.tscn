@@ -1,60 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c17kc8rwbxd63"]
+[gd_scene load_steps=2 format=3 uid="uid://c17kc8rwbxd63"]
 
-[ext_resource type="PackedScene" uid="uid://44j8o36jh800" path="res://Prefabs/Player/player.tscn" id="1_x2hdp"]
-[ext_resource type="Texture2D" uid="uid://7qwdhd5vg3tg" path="res://Addons/Tiny Swords/UI/Banners/Banner_Horizontal.png" id="2_olleo"]
+[ext_resource type="PackedScene" uid="uid://wgqxvbxride" path="res://UI/canvas_layer.tscn" id="1_fkmm0"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8lgq"]
-texture = ExtResource("2_olleo")
-texture_margin_left = 32.0
-texture_margin_top = 16.0
-texture_margin_right = 32.0
-texture_margin_bottom = 48.0
-axis_stretch_horizontal = 2
-axis_stretch_vertical = 2
-region_rect = Rect2(32, 47.5173, 128, 128.483)
+[node name="CanvasUI" type="Node2D"]
 
-[node name="TestUi" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_x2hdp")]
-position = Vector2(556, 341)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TimerLabel" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -91.0
-offset_top = 19.0
-offset_right = 92.0
-offset_bottom = 76.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 41
-text = "02:20"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -357.0
-offset_top = 7.0
-offset_right = -12.0
-offset_bottom = 97.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_j8lgq")
-
-[node name="GoldLabel" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -91.5
-offset_right = 91.5
-offset_bottom = 57.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 41
-text = "Gold: 100"
+[node name="CanvasLayer" parent="." instance=ExtResource("1_fkmm0")]

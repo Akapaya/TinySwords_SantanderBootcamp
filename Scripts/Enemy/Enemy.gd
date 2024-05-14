@@ -41,5 +41,6 @@ func DeathAnimation() -> void:
 		var deathObject = deathFab.instantiate()
 		deathObject.position = position
 		get_parent().add_child(deathObject)
-		
+		GameManager.Kills += 1
+		GameManager.Gold += 10
 	queue_free()
