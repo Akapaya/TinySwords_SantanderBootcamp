@@ -1,3 +1,4 @@
+class_name MobSpawner
 extends Node2D
 
 @onready var pathFollow2D : PathFollow2D = %PathFollow2D

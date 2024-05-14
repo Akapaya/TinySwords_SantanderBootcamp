@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cerc5bubq6dfs"]
+[gd_scene load_steps=51 format=3 uid="uid://cerc5bubq6dfs"]
 
 [ext_resource type="PackedScene" uid="uid://44j8o36jh800" path="res://Prefabs/Player/player.tscn" id="1_ydc8u"]
 [ext_resource type="PackedScene" uid="uid://d1ohkfcjnhbyn" path="res://Scenes/testsScenes/MobSpawner.tscn" id="2_e6gl4"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dl1vxusl6in6t" path="res://Addons/Tiny Swords/Deco/15.png" id="19_4i74u"]
 [ext_resource type="Texture2D" uid="uid://cm5vrx65ontcb" path="res://Addons/Tiny Swords/Deco/16.png" id="20_48hsd"]
 [ext_resource type="Texture2D" uid="uid://mvp7dbiguu7c" path="res://Addons/Tiny Swords/Deco/17.png" id="21_ih861"]
+[ext_resource type="Script" path="res://Scripts/Managers/DifficultySystem.gd" id="22_3r6va"]
 [ext_resource type="Texture2D" uid="uid://cioesye4y6qwx" path="res://Addons/Tiny Swords/Deco/18.png" id="22_ji6tk"]
 [ext_resource type="Texture2D" uid="uid://decqmwydxsvim" path="res://Addons/Tiny Swords/Terrain/Water/Water.png" id="23_36l6o"]
 [ext_resource type="PackedScene" uid="uid://k3tqk6r07bf3" path="res://Scenes/testsScenes/StaticBody.tscn" id="24_o3vjv"]
@@ -245,6 +246,12 @@ update_scale = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(583, 333)
+
+[node name="DifficultySystem" type="Node2D" parent="." node_paths=PackedStringArray("MobSpawner")]
+script = ExtResource("22_3r6va")
+MobSpawner = NodePath("../MobSpawner")
+MobsIncreasePerMinute = 10.0
+initialSpawnRate = 10.0
 
 [node name="MobSpawner" parent="." instance=ExtResource("2_e6gl4")]
 position = Vector2(583, 333)

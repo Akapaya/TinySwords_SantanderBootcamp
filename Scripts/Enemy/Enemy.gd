@@ -56,7 +56,7 @@ func DeathAnimation() -> void:
 func DropItem() -> void:
 	var template = GetRandomDropItem().instantiate()
 	template.position = position
-	get_parent().get_parent().add_child(template)
+	get_parent().add_child(template)
 
 func GetRandomDropItem() -> PackedScene:
 	if  dropItemsFab.size() == 1:
