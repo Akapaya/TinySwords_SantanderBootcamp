@@ -39,6 +39,11 @@ var ritualCooldown : float = 12.0
 @onready var ContactZone : Area2D = %ContactZone
 @onready var spritePlayer: Sprite2D = %Sprite2D
 @onready var animationPlayer: AnimationPlayer = %AnimationPlayer
+@onready var healthBar: ProgressBar = %ProgressBar
+
+func _ready():
+	healthBar.max_value = maxHealth
+	healthBar.value = health
 
 func _process(delta: float) -> void:
 	ReadInputs()
@@ -149,6 +154,7 @@ func DamageEffect() -> void:
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_QUINT)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.3)
+	healthBar.value = health
 
 func DeathAnimation() -> void:
 	if deathFab:
@@ -163,6 +169,7 @@ func HealthRegen(amount : float) ->void:
 	health +=amount
 	if(health >= maxHealth):
 		health = maxHealth
+	healthBar.value = health
 
 #Ritual Method
 func UpdateRitual(delta: float) -> void:
