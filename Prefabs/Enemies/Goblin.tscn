@@ -79,4 +79,4 @@ script = ExtResource("4_jvelt")
 
 [node name="FollowPlayer" type="Node2D" parent="."]
 script = ExtResource("5_7eff8")
-movementSpeed = 70.0
+movementSpeed = 50.0

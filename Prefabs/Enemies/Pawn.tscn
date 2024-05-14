@@ -78,4 +78,4 @@ script = ExtResource("2_imgcv")
 
 [node name="FollowPlayer" type="Node2D" parent="."]
 script = ExtResource("1_ngqfm")
-movementSpeed = 60.0
+movementSpeed = 40.0
