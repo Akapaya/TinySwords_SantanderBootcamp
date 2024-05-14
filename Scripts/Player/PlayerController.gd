@@ -2,27 +2,39 @@ class_name Player
 extends CharacterBody2D
 
 #Inputs
+@export_category("Inputs")
 var inputVector : Vector2
 
 #Movement Vars
+@export_category("Movement Vars")
 @export var movementSpeed: float = 3
 @export var lerpWeight: float = 0.4
 @export var movementSpeedMultiply: float = 5000
 
 #Stats Vars
+@export_category("Stats Vars")
 @export var Strenght: int = 2
 @export var maxHealth: int = 50
 @export var health: int = 50
 
 #Fabs Vars
+@export_category("Fabs Vars")
 @export var deathFab: PackedScene
+@export var ritualFab: PackedScene
+
+#Ritual Vars
+@export_category("Ritual Vars")
+@export var ritualInterval: float = 30.0
 
 #States
+@export_category("States")
 var isRunning : bool = false
 var isAttacking : bool = false
 var attackCooldown : float = 0.0
 var hitBoxCooldown : float = 0.0
+var ritualCooldown : float = 12.0
 
+@export_category("Components")
 @onready var swordArea: Area2D = %SwordArea
 @onready var ContactZone : Area2D = %ContactZone
 @onready var spritePlayer: Sprite2D = %Sprite2D
@@ -38,6 +50,8 @@ func _process(delta: float) -> void:
 		attackCooldown -= delta
 		if attackCooldown <= 0:
 			isAttacking = false
+	
+	UpdateRitual(delta)
 
 func _physics_process(delta :float) -> void:
 	var targetVelocity = inputVector * movementSpeed * movementSpeedMultiply * delta
@@ -144,7 +158,18 @@ func DeathAnimation() -> void:
 		
 	queue_free()
 
+#Health Method
 func HealthRegen(amount : float) ->void:
 	health +=amount
 	if(health >= maxHealth):
 		health = maxHealth
+
+#Ritual Method
+func UpdateRitual(delta: float) -> void:
+	ritualCooldown -= delta
+	if ritualCooldown >= 0:
+		return
+	ritualCooldown = ritualInterval
+	
+	var ritual = ritualFab.instantiate()
+	add_child(ritual)

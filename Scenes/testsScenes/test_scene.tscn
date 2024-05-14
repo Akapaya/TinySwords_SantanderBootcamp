@@ -1,39 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://g1kg1tl3j5m3"]
+[gd_scene load_steps=3 format=3 uid="uid://g1kg1tl3j5m3"]
 
 [ext_resource type="PackedScene" uid="uid://44j8o36jh800" path="res://Prefabs/Player/player.tscn" id="1_ul0go"]
-[ext_resource type="PackedScene" uid="uid://c1xil3bc8u7iv" path="res://Prefabs/Enemies/Pawn.tscn" id="2_rpdkr"]
-[ext_resource type="PackedScene" uid="uid://muqqalvpyn1y" path="res://Prefabs/Enemies/Goblin.tscn" id="3_mwyho"]
-[ext_resource type="PackedScene" uid="uid://b8mih244ht8lh" path="res://Prefabs/Enemies/Sheep.tscn" id="4_5hht3"]
-[ext_resource type="PackedScene" uid="uid://0l0j53qj18s" path="res://Animations/MeatlAnimation.tscn" id="5_5xv0u"]
+[ext_resource type="PackedScene" uid="uid://d1ohkfcjnhbyn" path="res://Scenes/testsScenes/MobSpawner.tscn" id="2_uiylc"]
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ul0go")]
 unique_name_in_owner = true
+position = Vector2(608, 360)
+ritualInterval = 12.0
 
-[node name="Enemy_1" parent="." instance=ExtResource("2_rpdkr")]
-position = Vector2(901, 511)
-
-[node name="Goblin" parent="." instance=ExtResource("3_mwyho")]
-position = Vector2(901, 305)
-
-[node name="Goblin2" parent="." instance=ExtResource("3_mwyho")]
-position = Vector2(743, 799)
-
-[node name="Enemy_2" parent="." instance=ExtResource("2_rpdkr")]
-position = Vector2(472, 591)
-
-[node name="Sheep" parent="." instance=ExtResource("4_5hht3")]
-position = Vector2(1337, 695)
-
-[node name="Sheep2" parent="." instance=ExtResource("4_5hht3")]
-position = Vector2(1342, 537)
-
-[node name="Sheep3" parent="." instance=ExtResource("4_5hht3")]
-position = Vector2(1424, 291)
-
-[node name="Sheep4" parent="." instance=ExtResource("4_5hht3")]
-position = Vector2(1576, 103)
-
-[node name="SkullAnimation" parent="." instance=ExtResource("5_5xv0u")]
-position = Vector2(533, 190)
+[node name="MobSpawner" parent="." instance=ExtResource("2_uiylc")]
+position = Vector2(-13, 13)

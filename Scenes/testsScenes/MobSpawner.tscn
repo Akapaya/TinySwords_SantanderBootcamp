@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ohkfcjnhbyn"]
+[gd_scene load_steps=6 format=3 uid="uid://d1ohkfcjnhbyn"]
 
-[ext_resource type="PackedScene" uid="uid://44j8o36jh800" path="res://Prefabs/Player/player.tscn" id="1_dwe7h"]
 [ext_resource type="Script" path="res://Scripts/Managers/MobSpawner.gd" id="2_mehdn"]
 [ext_resource type="PackedScene" uid="uid://muqqalvpyn1y" path="res://Prefabs/Enemies/Goblin.tscn" id="3_ydg32"]
 [ext_resource type="PackedScene" uid="uid://c1xil3bc8u7iv" path="res://Prefabs/Enemies/Pawn.tscn" id="4_kl2b5"]
@@ -13,9 +12,6 @@ _data = {
 point_count = 5
 
 [node name="MobSpawner" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_dwe7h")]
-position = Vector2(563, 346)
 
 [node name="MobSpawner" type="Node2D" parent="."]
 position = Vector2(564, 342)
