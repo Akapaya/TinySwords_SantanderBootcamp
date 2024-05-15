@@ -10,6 +10,9 @@ The project is a prototype of a Vampire Survivors base game, using free art asse
 
 https://github.com/Akapaya/TinySwords_SantanderBootcamp/assets/63330951/3823851c-7c7b-446d-987c-23e9e8911561
 
+You can play accessing this link and using this password "TinyCamp"
+https://akapaya.itch.io/tiny-camp
+
 ## Godot Challenges and Achievements
 This project is one of my practice project, This project is not my first project done in Godot, but it is the first to complete a course related to Godot, it was very interesting to see more of what I already knew about the systems.
 
