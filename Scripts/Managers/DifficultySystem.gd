@@ -9,6 +9,9 @@ extends Node
 var time:float = 0.0
 
 func _process(delta):
+	if GameManager.isGameOver == true:
+		return
+	
 	time += delta
 	
 	var spawnRate = initialSpawnRate + MobsIncreasePerMinute * (time/60.0)

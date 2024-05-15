@@ -4,11 +4,9 @@ extends CanvasLayer
 @onready var goldLabel: Label = %GoldLabel
 @onready var killLabel: Label = %KillLabel
 
-var timeElapsed: float = 0.0
-
 func _process(delta):
-	timeElapsed += delta
-	var timeElapsedInSeconds: int = floori(timeElapsed)
+	GameManager.timeElapsed += delta
+	var timeElapsedInSeconds: int = floori(GameManager.timeElapsed)
 	var seconds: int = timeElapsedInSeconds % 60
 	var minutes: int = timeElapsedInSeconds / 60
 	

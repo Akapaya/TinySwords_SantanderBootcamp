@@ -12,6 +12,9 @@ func _ready():
 	sprite = character.get_node("AnimatedSprite2D")
 
 func _physics_process(delta: float) -> void:
+	if GameManager.isGameOver == true:
+		return
+		
 	inputVector = (GameManager.playerPosition - character.position).normalized()
 	
 	character.velocity =  (inputVector * movementSpeed * multiplySpeed) * delta

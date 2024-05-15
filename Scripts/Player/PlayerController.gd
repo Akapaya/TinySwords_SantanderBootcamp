@@ -157,6 +157,8 @@ func DamageEffect() -> void:
 	healthBar.value = health
 
 func DeathAnimation() -> void:
+	GameManager.EndGame()
+	
 	if deathFab:
 		var deathObject = deathFab.instantiate()
 		deathObject.position = position

@@ -8,6 +8,9 @@ extends Node2D
 var cooldown: float = 0.0
 
 func _process(delta):
+	if GameManager.isGameOver == true:
+		return
+		
 	cooldown -= delta
 	if cooldown > 0:
 		return
@@ -27,7 +30,7 @@ func _process(delta):
 	var creature_scene = creatures[index]
 	var creature = creature_scene.instantiate()
 	creature.global_position = point
-	get_parent().get_parent().add_child(creature)
+	get_parent().add_child(creature)
 
 func GetPoint() -> Vector2:
 	pathFollow2D.progress_ratio = randf()
